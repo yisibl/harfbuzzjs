@@ -8,14 +8,24 @@ function example(hb, fontBlob) {
   buffer.addText('abc');
   buffer.guessSegmentProperties();
   // buffer.setDirection('ltr'); // optional as can be set by guessSegmentProperties also
-  hb.shape(buffer, font); // features are not supported yet
+  hb.shape(font, buffer); // features are not supported yet
   var result = buffer.json(font);
+
+  // returns glyphs paths, totally optional
+  var glyphs = {};
+  result.forEach(function (x) {
+    if (glyphs[x.g]) return;
+    glyphs[x.g] = {
+      path: font.glyphToPath(x.g),
+      json: font.glyphToJson(x.g)
+    };
+  });
 
   buffer.destroy();
   font.destroy();
   face.destroy();
   blob.destroy();
-  return result;
+  return { shape: result, glyphs: glyphs };
 }
 
 // Should be replaced with something more reliable

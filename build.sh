@@ -1,7 +1,12 @@
 #!/bin/bash
+set -e
+
+[ -x "$(command -v git)" ] || (echo "Please install git from your package manager" && exit 1)
+[ -x "$(command -v clang)" ] || (echo "Please install clang from your package manager" && exit 1)
+[ -x "$(command -v wasm-ld)" ] || (echo "Please install lld (llvm's linker) from your package manager" && exit 1)
 
 [ -d harfbuzz/src ] || git clone --depth=1 https://github.com/harfbuzz/harfbuzz
-(cd harfbuzz; git pull)
+(cd harfbuzz; git pull --ff-only)
 
 clang \
     -I./libc/include -Oz \
@@ -37,20 +42,10 @@ clang \
 	-Wl,--export=hb_face_get_upem \
 	-Wl,--export=hbjs_glyph_svg \
 	-Wl,--export=hbjs_shape_with_trace \
-	-Wl,--export=hb_buffer_serialize_glyphs \
 	-Wl,--export=free \
 	-Wl,--export=free_ptr \
 	-Wl,--export=__heap_base \
 	hbjs.c -DHAVE_CONFIG_OVERRIDE_H -I. -DHB_EXPERIMENTAL_API \
-	$@ libc/malloc.cc libc/zephyr-string.c libc/prf.c libc/strtol.c libc/sprintf.c libc/main.c harfbuzz/src/harfbuzz.cc
+	libc/malloc.cc libc/zephyr-string.c libc/prf.c libc/strtol.c libc/sprintf.c libc/main.c harfbuzz/src/harfbuzz.cc \
+	-o hb.wasm $@
 # add '-Wl,--export=hbjs_glyph_svg \' to expose glyph draw as svg
-wasm-opt -Oz a.out -o harfbuzz.wasm && rm a.out
-
-# emscripten based
-# --profiling-funcs
-# em++ -std=c++11 \
-#  -I./libc/include -Oz -s EXIT_RUNTIME=0 -s WASM_OBJECT_FILES=0 --llvm-lto 1 -s MALLOC=emmalloc --closure 1 -s ENVIRONMENT=node \
-#  -fno-exceptions -fno-rtti -fno-threadsafe-statics -fvisibility-inlines-hidden \
-# 	-DHB_TINY -DHB_USE_INTERNAL_QSORT \
-#  -s 'EXPORTED_FUNCTIONS=["_malloc", "_hb_blob_create", "_hb_face_create", "_hb_font_create", "_hb_buffer_create", "_hb_buffer_add_utf8", "_hb_buffer_guess_segment_properties", "_hb_buffer_set_direction", "_hb_shape", "_hb_buffer_get_glyph_infos", "_hb_buffer_get_glyph_positions", "_hb_buffer_get_length", "_hb_buffer_destroy", "_hb_font_destroy", "_hb_face_destroy", "_hb_blob_destroy", "_hb_blob_get_length", "_hb_font_set_scale", "_free"]' \
-# 	libc/zephyr-string.c libc/main.c harfbuzz/src/harfbuzz.cc

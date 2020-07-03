@@ -27,10 +27,28 @@ function hbjs(instance) {
     };
   }
 
+  var pathBufferSize = 65536; // should be enough for most glyphs
+  var pathBuffer = exports.malloc(pathBufferSize); // permanently allocated
+
   function createFont(face) {
     var ptr = exports.hb_font_create(face.ptr);
+
+    function glyphToPath(glyphId) {
+      var svgLength = exports.hbjs_glyph_svg(ptr, glyphId, pathBuffer, pathBufferSize);
+      return svgLength > 0 ? utf8Decoder.decode(heapu8.subarray(pathBuffer, pathBuffer + svgLength)) : "";
+    }
+
     return {
       ptr: ptr,
+      glyphToPath: glyphToPath,
+      glyphToJson: function (glyphId) {
+        var path = glyphToPath(glyphId);
+        return path.replace(/([MLQCZ])/g, '|$1 ').split('|').filter(function (x) { return x.length; }).map(function (x) {
+          var row = x.split(/[ ,]/g);
+          // based on format described on https://svgwg.org/specs/paths/#InterfaceSVGPathSegment
+          return { type: row[0], values: row.slice(1).filter(function (x) { return x.length; }).map(function (x) { return +x; }) };
+        });
+      },
       setScale: function (xScale, yScale) {
         exports.hb_font_set_scale(ptr, xScale, yScale);
       },
@@ -73,26 +91,13 @@ function hbjs(instance) {
       setClusterLevel: function (level) {
         exports.hb_buffer_set_cluster_level(ptr, level)
       },
-      shape: function (font, features) {
-        // features are not used yet
-        exports.hb_shape(font.ptr, ptr, 0, 0);
-      },
-      shapeWithTrace: function (font, features, stop_at, stop_phase) {
-        var bufLen = 1024 * 1024;
-        var traceBuffer = exports.malloc(bufLen);
-        var featurestr = createCString(features);
-        var traceLen = exports.hbjs_shape_with_trace(font.ptr, ptr, featurestr.ptr, stop_at, stop_phase, traceBuffer, bufLen);
-        var trace =  utf8Decoder.decode(heapu8.slice(traceBuffer, traceBuffer + traceLen -1))
-        exports.free(traceBuffer);
-        return JSON.parse(trace);
-      },
       json: function (font) {
         var length = exports.hb_buffer_get_length(ptr);
         var result = [];
         var infosPtr32 = exports.hb_buffer_get_glyph_infos(ptr, 0) / 4;
         var positionsPtr32 = exports.hb_buffer_get_glyph_positions(ptr, 0) / 4;
-        var infos = heapu32.slice(infosPtr32, infosPtr32 + 5 * length);
-        var positions = heapi32.slice(positionsPtr32, positionsPtr32 + 5 * length);
+        var infos = heapu32.subarray(infosPtr32, infosPtr32 + 5 * length);
+        var positions = heapi32.subarray(positionsPtr32, positionsPtr32 + 5 * length);
         for (var i = 0; i < length; ++i) {
           result.push({
             g: infos[i * 5 + 0],
@@ -109,30 +114,20 @@ function hbjs(instance) {
     };
   }
 
-  function glyphToSvg(font, glyphId) {
-    var bufSize = 4096;
-    var maxBufSize = 5 * 1024 * 1024;
-    while (bufSize < maxBufSize) {
-      var pathBuffer = exports.malloc(bufSize);
-      var svgLength = exports.hbjs_glyph_svg(font.ptr, glyphId, pathBuffer, bufSize);
-      if (svgLength != -1) {
-        var path = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><path d="' +
-          utf8Decoder.decode(heapu8.slice(pathBuffer, pathBuffer + svgLength)) +
-          '"/></svg>';
-        exports.free(pathBuffer);
-        return path;
-      }
-      // Failed, try again with more
-      exports.free(pathBuffer);
-      bufSize *= 2;
-    }
-    return;
-  }
-
-
   function shape(font, buffer, features) {
     // features are not used yet
     exports.hb_shape(font.ptr, buffer.ptr, 0, 0);
+  }
+
+  function shapeWithTrace(font, buffer, features, stop_at, stop_phase) {
+    var bufLen = 1024 * 1024;
+    var traceBuffer = exports.malloc(bufLen);
+    var featurestr = createCString(features);
+    var traceLen = exports.hbjs_shape_with_trace(font.ptr, buffer.ptr, featurestr.ptr, stop_at, stop_phase, traceBuffer, bufLen);
+    featurestr.free();
+    var trace = utf8Decoder.decode(heapu8.subarray(traceBuffer, traceBuffer + traceLen - 1));
+    exports.free(traceBuffer);
+    return JSON.parse(trace);
   }
 
   return {
@@ -141,7 +136,7 @@ function hbjs(instance) {
     createFont: createFont,
     createBuffer: createBuffer,
     shape: shape,
-    glyphToSvg: glyphToSvg
+    shapeWithTrace: shapeWithTrace
   };
 };
 
