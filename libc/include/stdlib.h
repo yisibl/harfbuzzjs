@@ -84,6 +84,11 @@ double strtod(const char *nptr, char **endptr);
 #define CHAR_MAX __SCHAR_MAX__
 #endif
 
+void
+qsort (void *base, size_t nel, size_t width, int (*compar)(const void *_a, const void *_b));
+
+inline double log(double v) { return 0; }
+
 #ifdef __cplusplus
 }
 #endif
