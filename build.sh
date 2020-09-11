@@ -24,6 +24,7 @@ clang \
 	-Wl,--export=hb_blob_create \
 	-Wl,--export=hb_face_create \
 	-Wl,--export=hb_font_create \
+	-Wl,--export=hb_font_get_glyph_name \
 	-Wl,--export=hb_buffer_create \
 	-Wl,--export=hb_buffer_add_utf8 \
 	-Wl,--export=hb_buffer_guess_segment_properties \
