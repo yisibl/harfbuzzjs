@@ -8,7 +8,8 @@ const SUBSET_TEXT = 'abc';
 
 (async () => {
     const { instance: { exports } } = await WebAssembly.instantiate(await readFile(join(__dirname, '../hb-subset.wasm')));
-    const fileName = 'NotoSans-Regular.ttf';
+    // const fileName = 'NotoSans-Regular.ttf';
+    const fileName = 'NotoSansThai-Bold.ttf';
     const fontBlob = await readFile(join(__dirname, '../test/fonts/noto', fileName));
 
     const t = performance.now();
