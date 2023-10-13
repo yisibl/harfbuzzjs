@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ttFont sfntVersion="\x00\x01\x00\x00" ttLibVersion="4.43">
+
+  <GlyphOrder>
+    <!-- The 'id' attribute is only for humans; it is ignored when parsed. -->
+    <GlyphID id="0" name=".notdef"/>
+  </GlyphOrder>
+
+  <head>
+    <!-- Most of this table will be recalculated by the compiler -->
+    <tableVersion value="1.0"/>
+    <fontRevision value="2.671"/>
+    <checkSumAdjustment value="0xff3f42d1"/>
+    <magicNumber value="0x5f0f3cf5"/>
+    <flags value="00001000 00000010"/>
+    <unitsPerEm value="960"/>
+    <created value="Thu Aug  3 22:12:48 2023"/>
+    <modified value="Fri Aug  4 00:28:26 2023"/>
+    <xMin value="-12"/>
+    <yMin value="-91"/>
+    <xMax value="972"/>
+    <yMax value="961"/>
+    <macStyle value="00000000 00000000"/>
+    <lowestRecPPEM value="6"/>
+    <fontDirectionHint value="2"/>
+    <indexToLocFormat value="0"/>
+    <glyphDataFormat value="0"/>
+  </head>
+
+  <hhea>
+    <tableVersion value="0x00010000"/>
+    <ascent value="1056"/>
+    <descent value="-96"/>
+    <lineGap value="0"/>
+    <advanceWidthMax value="960"/>
+    <minLeftSideBearing value="-12"/>
+    <minRightSideBearing value="-12"/>
+    <xMaxExtent value="972"/>
+    <caretSlopeRise value="1"/>
+    <caretSlopeRun value="0"/>
+    <caretOffset value="0"/>
+    <reserved0 value="0"/>
+    <reserved1 value="0"/>
+    <reserved2 value="0"/>
+    <reserved3 value="0"/>
+    <metricDataFormat value="0"/>
+    <numberOfHMetrics value="1"/>
+  </hhea>
+
+  <maxp>
+    <!-- Most of this table will be recalculated by the compiler -->
+    <tableVersion value="0x10000"/>
+    <numGlyphs value="1"/>
+    <maxPoints value="416"/>
+    <maxContours value="34"/>
+    <maxCompositePoints value="0"/>
+    <maxCompositeContours value="0"/>
+    <maxZones value="1"/>
+    <maxTwilightPoints value="0"/>
+    <maxStorage value="0"/>
+    <maxFunctionDefs value="0"/>
+    <maxInstructionDefs value="0"/>
+    <maxStackElements value="0"/>
+    <maxSizeOfInstructions value="0"/>
+    <maxComponentElements value="0"/>
+    <maxComponentDepth value="0"/>
+  </maxp>
+
+  <OS_2>
+    <!-- The fields 'usFirstCharIndex' and 'usLastCharIndex'
+         will be recalculated by the compiler -->
+    <version value="4"/>
+    <xAvgCharWidth value="960"/>
+    <usWeightClass value="400"/>
+    <usWidthClass value="5"/>
+    <fsType value="00000000 00000000"/>
+    <ySubscriptXSize value="0"/>
+    <ySubscriptYSize value="0"/>
+    <ySubscriptXOffset value="0"/>
+    <ySubscriptYOffset value="0"/>
+    <ySuperscriptXSize value="0"/>
+    <ySuperscriptYSize value="0"/>
+    <ySuperscriptXOffset value="0"/>
+    <ySuperscriptYOffset value="0"/>
+    <yStrikeoutSize value="0"/>
+    <yStrikeoutPosition value="0"/>
+    <sFamilyClass value="0"/>
+    <panose>
+      <bFamilyType value="5"/>
+      <bSerifStyle value="10"/>
+      <bWeight value="1"/>
+      <bProportion value="3"/>
+      <bContrast value="1"/>
+      <bStrokeVariation value="2"/>
+      <bArmStyle value="2"/>
+      <bLetterForm value="2"/>
+      <bMidline value="2"/>
+      <bXHeight value="2"/>
+    </panose>
+    <ulUnicodeRange1 value="00000000 00000000 00000000 00000000"/>
+    <ulUnicodeRange2 value="00000000 00000000 00000000 00000000"/>
+    <ulUnicodeRange3 value="00000000 00000000 00000000 00000000"/>
+    <ulUnicodeRange4 value="00000000 00000000 00000000 00000000"/>
+    <achVendID value="GOOG"/>
+    <fsSelection value="00000000 11000000"/>
+    <usFirstCharIndex value="65535"/>
+    <usLastCharIndex value="65535"/>
+    <sTypoAscender value="1056"/>
+    <sTypoDescender value="-96"/>
+    <sTypoLineGap value="0"/>
+    <usWinAscent value="1062"/>
+    <usWinDescent value="91"/>
+    <ulCodePageRange1 value="00000000 00000000 00000000 00000001"/>
+    <ulCodePageRange2 value="00000000 00000000 00000000 00000000"/>
+    <sxHeight value="960"/>
+    <sCapHeight value="960"/>
+    <usDefaultChar value="0"/>
+    <usBreakChar value="32"/>
+    <usMaxContext value="43"/>
+  </OS_2>
+
+  <hmtx>
+    <mtx name=".notdef" width="960" lsb="200"/>
+  </hmtx>
+
+  <cmap>
+    <tableVersion version="0"/>
+  </cmap>
+
+  <prep>
+    <assembly>
+      PUSHW[ ]	/* 1 value pushed */
+      511
+      SCANCTRL[ ]	/* ScanConversionControl */
+      PUSHB[ ]	/* 1 value pushed */
+      4
+      SCANTYPE[ ]	/* ScanType */
+    </assembly>
+  </prep>
+
+  <loca>
+    <!-- The 'loca' table will be calculated by the compiler -->
+  </loca>
+
+  <glyf>
+
+    <!-- The xMin, yMin, xMax and yMax values
+         will be recalculated by the compiler. -->
+
+    <TTGlyph name=".notdef"/><!-- contains no outline data -->
+
+  </glyf>
+
+  <name>
+    <namerecord nameID="0" platformID="3" platEncID="1" langID="0x409">
+      Copyright 2020-2023 Google LLC.  All Rights Reserved.
+    </namerecord>
+    <namerecord nameID="1" platformID="3" platEncID="1" langID="0x409">
+      Material Symbols Outlined
+    </namerecord>
+    <namerecord nameID="2" platformID="3" platEncID="1" langID="0x409">
+      Regular
+    </namerecord>
+    <namerecord nameID="3" platformID="3" platEncID="1" langID="0x409">
+      2.671;GOOG;MaterialSymbolsOutlined-Regular
+    </namerecord>
+    <namerecord nameID="4" platformID="3" platEncID="1" langID="0x409">
+      Material Symbols Outlined Regular
+    </namerecord>
+    <namerecord nameID="5" platformID="3" platEncID="1" langID="0x409">
+      Version 2.671
+    </namerecord>
+    <namerecord nameID="6" platformID="3" platEncID="1" langID="0x409">
+      MaterialSymbolsOutlined-Regular
+    </namerecord>
+    <namerecord nameID="256" platformID="3" platEncID="1" langID="0x409">
+      Fill
+    </namerecord>
+    <namerecord nameID="257" platformID="3" platEncID="1" langID="0x409">
+      Grade
+    </namerecord>
+    <namerecord nameID="258" platformID="3" platEncID="1" langID="0x409">
+      Optical Size
+    </namerecord>
+    <namerecord nameID="259" platformID="3" platEncID="1" langID="0x409">
+      Weight
+    </namerecord>
+    <namerecord nameID="260" platformID="3" platEncID="1" langID="0x409">
+      Thin
+    </namerecord>
+    <namerecord nameID="261" platformID="3" platEncID="1" langID="0x409">
+      ExtraLight
+    </namerecord>
+    <namerecord nameID="262" platformID="3" platEncID="1" langID="0x409">
+      Light
+    </namerecord>
+    <namerecord nameID="263" platformID="3" platEncID="1" langID="0x409">
+      Regular
+    </namerecord>
+    <namerecord nameID="264" platformID="3" platEncID="1" langID="0x409">
+      Medium
+    </namerecord>
+    <namerecord nameID="265" platformID="3" platEncID="1" langID="0x409">
+      SemiBold
+    </namerecord>
+    <namerecord nameID="266" platformID="3" platEncID="1" langID="0x409">
+      Bold
+    </namerecord>
+    <namerecord nameID="267" platformID="3" platEncID="1" langID="0x409">
+      Normal
+    </namerecord>
+    <namerecord nameID="268" platformID="3" platEncID="1" langID="0x409">
+      24pt
+    </namerecord>
+  </name>
+
+  <post>
+    <formatType value="3.0"/>
+    <italicAngle value="0.0"/>
+    <underlinePosition value="0"/>
+    <underlineThickness value="0"/>
+    <isFixedPitch value="0"/>
+    <minMemType42 value="0"/>
+    <maxMemType42 value="0"/>
+    <minMemType1 value="0"/>
+    <maxMemType1 value="0"/>
+  </post>
+
+  <gasp>
+    <gaspRange rangeMaxPPEM="65535" rangeGaspBehavior="15"/>
+  </gasp>
+
+  <GSUB>
+    <Version value="0x00010000"/>
+    <ScriptList>
+      <!-- ScriptCount=2 -->
+      <ScriptRecord index="0">
+        <ScriptTag value="DFLT"/>
+        <Script>
+          <DefaultLangSys>
+            <ReqFeatureIndex value="65535"/>
+            <!-- FeatureCount=0 -->
+          </DefaultLangSys>
+          <!-- LangSysCount=0 -->
+        </Script>
+      </ScriptRecord>
+      <ScriptRecord index="1">
+        <ScriptTag value="latn"/>
+        <Script>
+          <!-- LangSysCount=0 -->
+        </Script>
+      </ScriptRecord>
+    </ScriptList>
+    <FeatureList>
+      <!-- FeatureCount=0 -->
+    </FeatureList>
+    <LookupList>
+      <!-- LookupCount=0 -->
+    </LookupList>
+  </GSUB>
+
+  <HVAR>
+    <Version value="0x00010000"/>
+    <VarStore Format="1">
+      <Format value="1"/>
+      <VarRegionList>
+        <!-- RegionAxisCount=4 -->
+        <!-- RegionCount=0 -->
+      </VarRegionList>
+      <!-- VarDataCount=1 -->
+      <VarData index="0">
+        <!-- ItemCount=1 -->
+        <NumShorts value="0"/>
+        <!-- VarRegionCount=0 -->
+        <Item index="0" value="[]"/>
+      </VarData>
+    </VarStore>
+  </HVAR>
+
+  <STAT>
+    <Version value="0x00010001"/>
+    <DesignAxisRecordSize value="8"/>
+    <!-- DesignAxisCount=4 -->
+    <DesignAxisRecord>
+      <Axis index="0">
+        <AxisTag value="FILL"/>
+        <AxisNameID value="256"/>  <!-- Fill -->
+        <AxisOrdering value="0"/>
+      </Axis>
+      <Axis index="1">
+        <AxisTag value="GRAD"/>
+        <AxisNameID value="257"/>  <!-- Grade -->
+        <AxisOrdering value="1"/>
+      </Axis>
+      <Axis index="2">
+        <AxisTag value="opsz"/>
+        <AxisNameID value="258"/>  <!-- Optical Size -->
+        <AxisOrdering value="2"/>
+      </Axis>
+      <Axis index="3">
+        <AxisTag value="wght"/>
+        <AxisNameID value="259"/>  <!-- Weight -->
+        <AxisOrdering value="3"/>
+      </Axis>
+    </DesignAxisRecord>
+    <!-- AxisValueCount=10 -->
+    <AxisValueArray>
+      <AxisValue index="0" Format="1">
+        <AxisIndex value="0"/>
+        <Flags value="2"/>  <!-- ElidableAxisValueName -->
+        <ValueNameID value="267"/>  <!-- Normal -->
+        <Value value="0.0"/>
+      </AxisValue>
+      <AxisValue index="1" Format="1">
+        <AxisIndex value="1"/>
+        <Flags value="2"/>  <!-- ElidableAxisValueName -->
+        <ValueNameID value="267"/>  <!-- Normal -->
+        <Value value="0.0"/>
+      </AxisValue>
+      <AxisValue index="2" Format="1">
+        <AxisIndex value="2"/>
+        <Flags value="2"/>  <!-- ElidableAxisValueName -->
+        <ValueNameID value="268"/>  <!-- 24pt -->
+        <Value value="24.0"/>
+      </AxisValue>
+      <AxisValue index="3" Format="1">
+        <AxisIndex value="3"/>
+        <Flags value="0"/>
+        <ValueNameID value="260"/>  <!-- Thin -->
+        <Value value="100.0"/>
+      </AxisValue>
+      <AxisValue index="4" Format="1">
+        <AxisIndex value="3"/>
+        <Flags value="0"/>
+        <ValueNameID value="261"/>  <!-- ExtraLight -->
+        <Value value="200.0"/>
+      </AxisValue>
+      <AxisValue index="5" Format="1">
+        <AxisIndex value="3"/>
+        <Flags value="0"/>
+        <ValueNameID value="262"/>  <!-- Light -->
+        <Value value="300.0"/>
+      </AxisValue>
+      <AxisValue index="6" Format="3">
+        <AxisIndex value="3"/>
+        <Flags value="2"/>  <!-- ElidableAxisValueName -->
+        <ValueNameID value="263"/>  <!-- Regular -->
+        <Value value="400.0"/>
+        <LinkedValue value="700.0"/>
+      </AxisValue>
+      <AxisValue index="7" Format="1">
+        <AxisIndex value="3"/>
+        <Flags value="0"/>
+        <ValueNameID value="264"/>  <!-- Medium -->
+        <Value value="500.0"/>
+      </AxisValue>
+      <AxisValue index="8" Format="1">
+        <AxisIndex value="3"/>
+        <Flags value="0"/>
+        <ValueNameID value="265"/>  <!-- SemiBold -->
+        <Value value="600.0"/>
+      </AxisValue>
+      <AxisValue index="9" Format="1">
+        <AxisIndex value="3"/>
+        <Flags value="0"/>
+        <ValueNameID value="266"/>  <!-- Bold -->
+        <Value value="700.0"/>
+      </AxisValue>
+    </AxisValueArray>
+    <ElidedFallbackNameID value="2"/>  <!-- Regular -->
+  </STAT>
+
+  <avar>
+    <version major="1" minor="0"/>
+    <segment axis="FILL">
+      <mapping from="-1.0" to="-1.0"/>
+      <mapping from="0.0" to="0.0"/>
+      <mapping from="1.0" to="1.0"/>
+    </segment>
+    <segment axis="GRAD">
+      <mapping from="-1.0" to="-1.0"/>
+      <mapping from="0.0" to="0.0"/>
+      <mapping from="1.0" to="1.0"/>
+    </segment>
+    <segment axis="opsz">
+      <mapping from="-1.0" to="-1.0"/>
+      <mapping from="0.0" to="0.0"/>
+      <mapping from="1.0" to="1.0"/>
+    </segment>
+    <segment axis="wght">
+      <mapping from="-1.0" to="-1.0"/>
+      <mapping from="-0.6667" to="-0.7692"/>
+      <mapping from="-0.3333" to="-0.38464"/>
+      <mapping from="0.0" to="0.0"/>
+      <mapping from="0.3333" to="0.23914"/>
+      <mapping from="0.6667" to="0.56525"/>
+      <mapping from="1.0" to="1.0"/>
+    </segment>
+  </avar>
+
+  <fvar>
+
+    <!-- Fill -->
+    <Axis>
+      <AxisTag>FILL</AxisTag>
+      <Flags>0x0</Flags>
+      <MinValue>0.0</MinValue>
+      <DefaultValue>0.0</DefaultValue>
+      <MaxValue>1.0</MaxValue>
+      <AxisNameID>256</AxisNameID>
+    </Axis>
+
+    <!-- Grade -->
+    <Axis>
+      <AxisTag>GRAD</AxisTag>
+      <Flags>0x0</Flags>
+      <MinValue>-50.0</MinValue>
+      <DefaultValue>0.0</DefaultValue>
+      <MaxValue>200.0</MaxValue>
+      <AxisNameID>257</AxisNameID>
+    </Axis>
+
+    <!-- Optical Size -->
+    <Axis>
+      <AxisTag>opsz</AxisTag>
+      <Flags>0x0</Flags>
+      <MinValue>20.0</MinValue>
+      <DefaultValue>24.0</DefaultValue>
+      <MaxValue>48.0</MaxValue>
+      <AxisNameID>258</AxisNameID>
+    </Axis>
+
+    <!-- Weight -->
+    <Axis>
+      <AxisTag>wght</AxisTag>
+      <Flags>0x0</Flags>
+      <MinValue>100.0</MinValue>
+      <DefaultValue>400.0</DefaultValue>
+      <MaxValue>700.0</MaxValue>
+      <AxisNameID>259</AxisNameID>
+    </Axis>
+
+    <!-- Thin -->
+    <NamedInstance flags="0x0" subfamilyNameID="260">
+      <coord axis="FILL" value="0.0"/>
+      <coord axis="GRAD" value="0.0"/>
+      <coord axis="opsz" value="24.0"/>
+      <coord axis="wght" value="100.0"/>
+    </NamedInstance>
+
+    <!-- ExtraLight -->
+    <NamedInstance flags="0x0" subfamilyNameID="261">
+      <coord axis="FILL" value="0.0"/>
+      <coord axis="GRAD" value="0.0"/>
+      <coord axis="opsz" value="24.0"/>
+      <coord axis="wght" value="200.0"/>
+    </NamedInstance>
+
+    <!-- Light -->
+    <NamedInstance flags="0x0" subfamilyNameID="262">
+      <coord axis="FILL" value="0.0"/>
+      <coord axis="GRAD" value="0.0"/>
+      <coord axis="opsz" value="24.0"/>
+      <coord axis="wght" value="300.0"/>
+    </NamedInstance>
+
+    <!-- Regular -->
+    <NamedInstance flags="0x0" subfamilyNameID="263">
+      <coord axis="FILL" value="0.0"/>
+      <coord axis="GRAD" value="0.0"/>
+      <coord axis="opsz" value="24.0"/>
+      <coord axis="wght" value="400.0"/>
+    </NamedInstance>
+
+    <!-- Medium -->
+    <NamedInstance flags="0x0" subfamilyNameID="264">
+      <coord axis="FILL" value="0.0"/>
+      <coord axis="GRAD" value="0.0"/>
+      <coord axis="opsz" value="24.0"/>
+      <coord axis="wght" value="500.0"/>
+    </NamedInstance>
+
+    <!-- SemiBold -->
+    <NamedInstance flags="0x0" subfamilyNameID="265">
+      <coord axis="FILL" value="0.0"/>
+      <coord axis="GRAD" value="0.0"/>
+      <coord axis="opsz" value="24.0"/>
+      <coord axis="wght" value="600.0"/>
+    </NamedInstance>
+
+    <!-- Bold -->
+    <NamedInstance flags="0x0" subfamilyNameID="266">
+      <coord axis="FILL" value="0.0"/>
+      <coord axis="GRAD" value="0.0"/>
+      <coord axis="opsz" value="24.0"/>
+      <coord axis="wght" value="700.0"/>
+    </NamedInstance>
+  </fvar>
+
+  <gvar>
+    <version value="1"/>
+    <reserved value="0"/>
+  </gvar>
+
+</ttFont>
