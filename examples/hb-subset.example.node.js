@@ -26,7 +26,8 @@ const { performance } = require('node:perf_hooks');
     const glyph_map = exports.hb_subset_plan_old_to_new_glyph_mapping(plan);
     console.log('glyph_map: ', glyph_map)
 
-    const glyph_set = exports.hb_subset_input_glyph_set(plan);
+    exports.hb_subset_input_set_flags(input, 512) // --no-layout-closure flag
+    const glyph_set = exports.hb_subset_input_glyph_set(input);
 
     // TODO: get gids via hb-shape
     const SUBSET_GIDS = [4261,4995,5012,5013,5014]; // star icon
