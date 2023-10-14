@@ -6,26 +6,26 @@
     <GlyphID id="0" name=".notdef"/>
     <GlyphID id="1" name="uniE838"/>
     <GlyphID id="2" name="glyph00002"/>
-    <GlyphID id="3" name="a"/>
-    <GlyphID id="4" name="r"/>
-    <GlyphID id="5" name="s"/>
-    <GlyphID id="6" name="t"/>
+    <GlyphID id="3" name="A"/>
+    <GlyphID id="4" name="R"/>
+    <GlyphID id="5" name="S"/>
+    <GlyphID id="6" name="T"/>
   </GlyphOrder>
 
   <head>
     <!-- Most of this table will be recalculated by the compiler -->
     <tableVersion value="1.0"/>
     <fontRevision value="2.671"/>
-    <checkSumAdjustment value="0x6bec8e3a"/>
+    <checkSumAdjustment value="0xc9aed620"/>
     <magicNumber value="0x5f0f3cf5"/>
     <flags value="00001000 00000010"/>
     <unitsPerEm value="960"/>
     <created value="Thu Aug  3 22:12:48 2023"/>
-    <modified value="Fri Aug  4 00:28:26 2023"/>
-    <xMin value="-12"/>
-    <yMin value="-91"/>
-    <xMax value="972"/>
-    <yMax value="961"/>
+    <modified value="Wed Oct 11 16:46:50 2023"/>
+    <xMin value="0"/>
+    <yMin value="-15"/>
+    <xMax value="957"/>
+    <yMax value="840"/>
     <macStyle value="00000000 00000000"/>
     <lowestRecPPEM value="6"/>
     <fontDirectionHint value="2"/>
@@ -39,9 +39,9 @@
     <descent value="-96"/>
     <lineGap value="0"/>
     <advanceWidthMax value="960"/>
-    <minLeftSideBearing value="-12"/>
-    <minRightSideBearing value="-12"/>
-    <xMaxExtent value="972"/>
+    <minLeftSideBearing value="0"/>
+    <minRightSideBearing value="3"/>
+    <xMaxExtent value="957"/>
     <caretSlopeRise value="1"/>
     <caretSlopeRun value="0"/>
     <caretOffset value="0"/>
@@ -57,8 +57,8 @@
     <!-- Most of this table will be recalculated by the compiler -->
     <tableVersion value="0x10000"/>
     <numGlyphs value="7"/>
-    <maxPoints value="416"/>
-    <maxContours value="34"/>
+    <maxPoints value="48"/>
+    <maxContours value="3"/>
     <maxCompositePoints value="0"/>
     <maxCompositeContours value="0"/>
     <maxZones value="1"/>
@@ -109,7 +109,7 @@
     <ulUnicodeRange4 value="00000000 00000000 00000000 00000000"/>
     <achVendID value="GOOG"/>
     <fsSelection value="00000000 11000000"/>
-    <usFirstCharIndex value="97"/>
+    <usFirstCharIndex value="65"/>
     <usLastCharIndex value="61594"/>
     <sTypoAscender value="1056"/>
     <sTypoDescender value="-96"/>
@@ -127,21 +127,25 @@
 
   <hmtx>
     <mtx name=".notdef" width="960" lsb="200"/>
-    <mtx name="a" width="960" lsb="0"/>
+    <mtx name="A" width="960" lsb="0"/>
+    <mtx name="R" width="960" lsb="109"/>
+    <mtx name="S" width="960" lsb="56"/>
+    <mtx name="T" width="960" lsb="47"/>
     <mtx name="glyph00002" width="960" lsb="80"/>
-    <mtx name="r" width="960" lsb="109"/>
-    <mtx name="s" width="960" lsb="56"/>
-    <mtx name="t" width="960" lsb="47"/>
     <mtx name="uniE838" width="960" lsb="80"/>
   </hmtx>
 
   <cmap>
     <tableVersion version="0"/>
     <cmap_format_4 platformID="0" platEncID="3" language="0">
-      <map code="0x61" name="a"/><!-- LATIN SMALL LETTER A -->
-      <map code="0x72" name="r"/><!-- LATIN SMALL LETTER R -->
-      <map code="0x73" name="s"/><!-- LATIN SMALL LETTER S -->
-      <map code="0x74" name="t"/><!-- LATIN SMALL LETTER T -->
+      <map code="0x41" name="A"/><!-- LATIN CAPITAL LETTER A -->
+      <map code="0x52" name="R"/><!-- LATIN CAPITAL LETTER R -->
+      <map code="0x53" name="S"/><!-- LATIN CAPITAL LETTER S -->
+      <map code="0x54" name="T"/><!-- LATIN CAPITAL LETTER T -->
+      <map code="0x61" name="A"/><!-- LATIN SMALL LETTER A -->
+      <map code="0x72" name="R"/><!-- LATIN SMALL LETTER R -->
+      <map code="0x73" name="S"/><!-- LATIN SMALL LETTER S -->
+      <map code="0x74" name="T"/><!-- LATIN SMALL LETTER T -->
       <map code="0xe838" name="uniE838"/><!-- ???? -->
       <map code="0xe83a" name="uniE838"/><!-- ???? -->
       <map code="0xf06f" name="uniE838"/><!-- ???? -->
@@ -149,10 +153,14 @@
       <map code="0xf09a" name="uniE838"/><!-- ???? -->
     </cmap_format_4>
     <cmap_format_4 platformID="3" platEncID="1" language="0">
-      <map code="0x61" name="a"/><!-- LATIN SMALL LETTER A -->
-      <map code="0x72" name="r"/><!-- LATIN SMALL LETTER R -->
-      <map code="0x73" name="s"/><!-- LATIN SMALL LETTER S -->
-      <map code="0x74" name="t"/><!-- LATIN SMALL LETTER T -->
+      <map code="0x41" name="A"/><!-- LATIN CAPITAL LETTER A -->
+      <map code="0x52" name="R"/><!-- LATIN CAPITAL LETTER R -->
+      <map code="0x53" name="S"/><!-- LATIN CAPITAL LETTER S -->
+      <map code="0x54" name="T"/><!-- LATIN CAPITAL LETTER T -->
+      <map code="0x61" name="A"/><!-- LATIN SMALL LETTER A -->
+      <map code="0x72" name="R"/><!-- LATIN SMALL LETTER R -->
+      <map code="0x73" name="S"/><!-- LATIN SMALL LETTER S -->
+      <map code="0x74" name="T"/><!-- LATIN SMALL LETTER T -->
       <map code="0xe838" name="uniE838"/><!-- ???? -->
       <map code="0xe83a" name="uniE838"/><!-- ???? -->
       <map code="0xf06f" name="uniE838"/><!-- ???? -->
@@ -183,7 +191,7 @@
 
     <TTGlyph name=".notdef"/><!-- contains no outline data -->
 
-    <TTGlyph name="a" xMin="0" yMin="0" xMax="957" yMax="687">
+    <TTGlyph name="A" xMin="0" yMin="0" xMax="957" yMax="687">
       <contour>
         <pt x="0" y="0" on="1"/>
         <pt x="429" y="687" on="1"/>
@@ -202,23 +210,7 @@
       <instructions/>
     </TTGlyph>
 
-    <TTGlyph name="glyph00002" xMin="80" yMin="80" xMax="880" yMax="840">
-      <contour>
-        <pt x="233" y="80" on="1"/>
-        <pt x="298" y="361" on="1"/>
-        <pt x="80" y="550" on="1"/>
-        <pt x="368" y="575" on="1"/>
-        <pt x="480" y="840" on="1"/>
-        <pt x="592" y="575" on="1"/>
-        <pt x="880" y="550" on="1"/>
-        <pt x="662" y="361" on="1"/>
-        <pt x="727" y="80" on="1"/>
-        <pt x="480" y="229" on="1"/>
-      </contour>
-      <instructions/>
-    </TTGlyph>
-
-    <TTGlyph name="r" xMin="109" yMin="0" xMax="914" yMax="683">
+    <TTGlyph name="R" xMin="109" yMin="0" xMax="914" yMax="683">
       <contour>
         <pt x="109" y="0" on="1"/>
         <pt x="109" y="683" on="1"/>
@@ -252,7 +244,7 @@
       <instructions/>
     </TTGlyph>
 
-    <TTGlyph name="s" xMin="56" yMin="-15" xMax="908" yMax="696">
+    <TTGlyph name="S" xMin="56" yMin="-15" xMax="908" yMax="696">
       <contour>
         <pt x="485" y="-15" on="1"/>
         <pt x="305" y="-15" on="0"/>
@@ -306,7 +298,7 @@
       <instructions/>
     </TTGlyph>
 
-    <TTGlyph name="t" xMin="47" yMin="0" xMax="913" yMax="683">
+    <TTGlyph name="T" xMin="47" yMin="0" xMax="913" yMax="683">
       <contour>
         <pt x="436" y="0" on="1"/>
         <pt x="436" y="608" on="1"/>
@@ -316,6 +308,22 @@
         <pt x="913" y="608" on="1"/>
         <pt x="526" y="608" on="1"/>
         <pt x="526" y="0" on="1"/>
+      </contour>
+      <instructions/>
+    </TTGlyph>
+
+    <TTGlyph name="glyph00002" xMin="80" yMin="80" xMax="880" yMax="840">
+      <contour>
+        <pt x="233" y="80" on="1"/>
+        <pt x="298" y="361" on="1"/>
+        <pt x="80" y="550" on="1"/>
+        <pt x="368" y="575" on="1"/>
+        <pt x="480" y="840" on="1"/>
+        <pt x="592" y="575" on="1"/>
+        <pt x="880" y="550" on="1"/>
+        <pt x="662" y="361" on="1"/>
+        <pt x="727" y="80" on="1"/>
+        <pt x="480" y="229" on="1"/>
       </contour>
       <instructions/>
     </TTGlyph>
@@ -495,8 +503,8 @@
         <ExtensionSubst index="0" Format="1">
           <ExtensionLookupType value="4"/>
           <LigatureSubst>
-            <LigatureSet glyph="s">
-              <Ligature components="t,a,r" glyph="uniE838"/>
+            <LigatureSet glyph="S">
+              <Ligature components="T,A,R" glyph="uniE838"/>
             </LigatureSet>
           </LigatureSubst>
         </ExtensionSubst>

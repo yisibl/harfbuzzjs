@@ -6,6 +6,38 @@ const { performance } = require('node:perf_hooks');
 
 (async () => {
     const { instance: { exports } } = await WebAssembly.instantiate(await readFile(join(__dirname, '../hb-subset.wasm')));
+
+
+    function _subset_flag(s) {
+        if (s == "--glyph-names") { return 0x00000080; }
+        if (s == "--no-layout-closure") { return 0x00000200; }
+        return 0x0;
+    }
+
+    function setSubsetFlags(input, flags) {
+        let flagValue = 0;
+        flags.forEach(function (s) {
+            flagValue |= _subset_flag(s);
+        })
+        exports.hb_subset_input_set_flags(input, flagValue);
+        console.log('flagValue', flagValue)
+    }
+
+    // Add the keys of map to keys .
+    // https://harfbuzz.github.io/harfbuzz-hb-map.html#hb-map-keys
+    function mapKeys(map) {
+        console.log('map=', map);
+        console.log('hb_map_is_empty', exports.hb_map_is_empty(map));
+
+        const mySetPtr = exports.hb_set_create();
+        exports.hb_map_keys(map, mySetPtr);
+        const result = typedArrayFromSet(mySetPtr, Uint32Array);
+        exports.hb_set_destroy(mySetPtr);
+
+        console.log('hb_map_keys result: ', result);
+        return result;
+    }
+
     const fileName = 'MaterialSymbolsOutlined-VF.ttf';
     const fontBlob = await readFile(join(__dirname, fileName));
 
@@ -18,23 +50,37 @@ const { performance } = require('node:perf_hooks');
     const blob = exports.hb_blob_create(fontBuffer, fontBlob.byteLength, 2/*HB_MEMORY_MODE_WRITABLE*/, 0, 0);
     const face = exports.hb_face_create(blob, 0);
     exports.hb_blob_destroy(blob);
+    // TODO: get gids via hb-shape
+    // const SUBSET_GIDS = [4261,4995,5012,5013,5014]; // star icon
+    const SUBSET_GIDS = [4261]; // star icon
+    const SUBSET_TEXT = 'star'
 
     /* Add your glyph indices here and subset */
     const input = exports.hb_subset_input_create_or_fail();
-    const plan = exports.hb_subset_plan_create_or_fail(face, input);
-    console.log('plan: ', plan)
-    const glyph_map = exports.hb_subset_plan_old_to_new_glyph_mapping(plan);
-    console.log('glyph_map: ', glyph_map)
-
-    exports.hb_subset_input_set_flags(input, 512) // --no-layout-closure flag
     const glyph_set = exports.hb_subset_input_glyph_set(input);
-
-    // TODO: get gids via hb-shape
-    const SUBSET_GIDS = [4261,4995,5012,5013,5014]; // star icon
     for (const gid of SUBSET_GIDS) {
-        exports.hb_set_add(glyph_set, gid.toString());
+        exports.hb_set_add(glyph_set, gid);
     }
 
+    const plan = exports.hb_subset_plan_create_or_fail(face, input);
+    const glyph_map = exports.hb_subset_plan_old_to_new_glyph_mapping(plan);
+    const new_gids = mapKeys(glyph_map) // get star.fill's gid
+    console.log('new_gids', new_gids)
+
+    const glyph_set2 = exports.hb_subset_input_glyph_set(input);
+    for (const gid of new_gids) {
+        exports.hb_set_add(glyph_set2, gid);
+    }
+
+    const unicode_set = exports.hb_subset_input_unicode_set(input);
+    for (const text of SUBSET_TEXT) {
+        exports.hb_set_add(unicode_set, text.codePointAt(0));
+    }
+
+    setSubsetFlags(input, [
+        '--no-layout-closure',
+        // '--glyph-names',
+    ])
     const subset = exports.hb_subset_or_fail(face, input);
 
     /* Clean up */
@@ -54,14 +100,14 @@ const { performance } = require('node:perf_hooks');
             'Failed to create subset font, maybe the input file is corrupted?'
         );
     }
-    
+
     // Output font data(Uint8Array)
     const subsetFontBlob = heapu8.subarray(offset, offset + exports.hb_blob_get_length(resultBlob));
     console.info('✨ Subset done in', performance.now() - t, 'ms');
 
     const extName = extname(fileName).toLowerCase();
     const fontName = basename(fileName, extName);
-    await writeFile(join(__dirname, '/', `${fontName}.subset${extName}`), subsetFontBlob);    
+    await writeFile(join(__dirname, '/', `${fontName}.subset${extName}`), subsetFontBlob);
     console.info(`Wrote subset to: ${__dirname}/${fontName}.subset${extName}`);
 
     /* Clean up */
@@ -69,4 +115,46 @@ const { performance } = require('node:perf_hooks');
     exports.hb_face_destroy(subset);
     exports.hb_face_destroy(face);
     exports.free(fontBuffer);
+
+    /**
+     * Return the typed array of HarfBuzz set contents.
+     * @template {typeof Uint8Array | typeof Uint32Array | typeof Int32Array | typeof Float32Array} T
+     * @param {number} setPtr Pointer of set
+     * @param {T} arrayClass Typed array class
+     * @returns {InstanceType<T>} Typed array instance
+     */
+    function typedArrayFromSet(setPtr, arrayClass) {
+        const HB_SET_VALUE_INVALID = -1;
+        const heapu32 = new Uint32Array(exports.memory.buffer);
+        const heapi32 = new Int32Array(exports.memory.buffer);
+        const heapf32 = new Float32Array(exports.memory.buffer);
+
+        let heap = heapu8;
+        if (arrayClass === Uint32Array) {
+            heap = heapu32;
+        } else if (arrayClass === Int32Array) {
+            heap = heapi32;
+        } else if (arrayClass === Float32Array) {
+            heap = heapf32;
+        }
+        const bytesPerElment = arrayClass.BYTES_PER_ELEMENT;
+        const setCount = exports.hb_set_get_population(setPtr);
+        const arrayPtr = exports.malloc(
+            setCount * bytesPerElment,
+        );
+        const arrayOffset = arrayPtr / bytesPerElment;
+        const array = heap.subarray(
+            arrayOffset,
+            arrayOffset + setCount,
+        );
+        heap.set(array, arrayOffset);
+        exports.hb_set_next_many(
+            setPtr,
+            HB_SET_VALUE_INVALID,
+            arrayPtr,
+            setCount,
+        );
+        return array;
+    }
+
 })();
