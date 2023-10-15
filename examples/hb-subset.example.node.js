@@ -7,7 +7,6 @@ const { performance } = require('node:perf_hooks');
 (async () => {
     const { instance: { exports } } = await WebAssembly.instantiate(await readFile(join(__dirname, '../hb-subset.wasm')));
 
-
     function _subset_flag(s) {
         if (s == "--glyph-names") { return 0x00000080; }
         if (s == "--no-layout-closure") { return 0x00000200; }
@@ -20,22 +19,24 @@ const { performance } = require('node:perf_hooks');
             flagValue |= _subset_flag(s);
         })
         exports.hb_subset_input_set_flags(input, flagValue);
-        console.log('flagValue', flagValue)
+        // console.log('flagValue', flagValue)
     }
 
     // Add the keys of map to keys .
     // https://harfbuzz.github.io/harfbuzz-hb-map.html#hb-map-keys
-    function mapKeys(map) {
-        console.log('map=', map);
-        console.log('hb_map_is_empty', exports.hb_map_is_empty(map));
-
+    function HbMapKeys(map) {
         const mySetPtr = exports.hb_set_create();
         exports.hb_map_keys(map, mySetPtr);
         const result = typedArrayFromSet(mySetPtr, Uint32Array);
         exports.hb_set_destroy(mySetPtr);
 
-        console.log('hb_map_keys result: ', result);
         return result;
+    }
+
+    function closureAndGetGids(input) {
+        const plan = exports.hb_subset_plan_create_or_fail(face, input);
+        const glyph_map = exports.hb_subset_plan_old_to_new_glyph_mapping(plan);
+        return HbMapKeys(glyph_map); // gids
     }
 
     const fileName = 'MaterialSymbolsOutlined-VF.ttf';
@@ -51,9 +52,8 @@ const { performance } = require('node:perf_hooks');
     const face = exports.hb_face_create(blob, 0);
     exports.hb_blob_destroy(blob);
     // TODO: get gids via hb-shape
-    // const SUBSET_GIDS = [4261,4995,5012,5013,5014]; // star icon
     const SUBSET_GIDS = [4261]; // star icon
-    const SUBSET_TEXT = 'star'
+    const SUBSET_TEXT = ['star']
 
     /* Add your glyph indices here and subset */
     const input = exports.hb_subset_input_create_or_fail();
@@ -62,25 +62,27 @@ const { performance } = require('node:perf_hooks');
         exports.hb_set_add(glyph_set, gid);
     }
 
-    const plan = exports.hb_subset_plan_create_or_fail(face, input);
-    const glyph_map = exports.hb_subset_plan_old_to_new_glyph_mapping(plan);
-    const new_gids = mapKeys(glyph_map) // get star.fill's gid
-    console.log('new_gids', new_gids)
+    const gids = closureAndGetGids(input);
+    console.log('📌 Step 1: Glyph IDs', `[${gids.join(', ')}]`)
 
     const glyph_set2 = exports.hb_subset_input_glyph_set(input);
-    for (const gid of new_gids) {
+    for (const gid of gids) {
         exports.hb_set_add(glyph_set2, gid);
     }
 
     const unicode_set = exports.hb_subset_input_unicode_set(input);
-    for (const text of SUBSET_TEXT) {
+    for (const text of SUBSET_TEXT.toString()) {
         exports.hb_set_add(unicode_set, text.codePointAt(0));
     }
-
     setSubsetFlags(input, [
         '--no-layout-closure',
-        // '--glyph-names',
+        // '--glyph-names'
     ])
+
+    const new_gids = closureAndGetGids(input);
+    console.log('📌 Step 2: Glyph IDs', `[${new_gids.join(', ')}]`)
+    console.log(`🍞 Closed glyph list over : ${new_gids.length} glyphs after`)
+
     const subset = exports.hb_subset_or_fail(face, input);
 
     /* Clean up */
