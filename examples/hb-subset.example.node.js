@@ -55,6 +55,11 @@ const { performance } = require('node:perf_hooks');
     const SUBSET_GIDS = [4261]; // star icon
     const SUBSET_TEXT = ['star']
 
+    // Upper case STAR can also be mapped to the same icon.
+    SUBSET_TEXT.forEach(word => {
+        SUBSET_TEXT.push(word.toUpperCase());
+    });
+
     /* Add your glyph indices here and subset */
     const input = exports.hb_subset_input_create_or_fail();
     const glyph_set = exports.hb_subset_input_glyph_set(input);
