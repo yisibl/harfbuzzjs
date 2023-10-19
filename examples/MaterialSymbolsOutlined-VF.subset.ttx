@@ -16,7 +16,7 @@
     <!-- Most of this table will be recalculated by the compiler -->
     <tableVersion value="1.0"/>
     <fontRevision value="2.671"/>
-    <checkSumAdjustment value="0x6bec8e3a"/>
+    <checkSumAdjustment value="0x6bc28d0e"/>
     <magicNumber value="0x5f0f3cf5"/>
     <flags value="00001000 00000010"/>
     <unitsPerEm value="960"/>
@@ -562,6 +562,15 @@
         <Item index="6" value="[]"/>
       </VarData>
     </VarStore>
+    <AdvWidthMap>
+      <Map glyph=".notdef" outer="0" inner="0"/>
+      <Map glyph="a" outer="0" inner="3"/>
+      <Map glyph="glyph00002" outer="0" inner="2"/>
+      <Map glyph="r" outer="0" inner="4"/>
+      <Map glyph="s" outer="0" inner="5"/>
+      <Map glyph="t" outer="0" inner="6"/>
+      <Map glyph="uniE838" outer="0" inner="1"/>
+    </AdvWidthMap>
   </HVAR>
 
   <STAT>

@@ -22,21 +22,21 @@ const { performance } = require('node:perf_hooks');
         // console.log('flagValue', flagValue)
     }
 
-    // Add the keys of map to keys .
-    // https://harfbuzz.github.io/harfbuzz-hb-map.html#hb-map-keys
-    function HbMapKeys(map) {
-        const mySetPtr = exports.hb_set_create();
-        exports.hb_map_keys(map, mySetPtr);
-        const result = typedArrayFromSet(mySetPtr, Uint32Array);
-        exports.hb_set_destroy(mySetPtr);
-
-        return result;
-    }
-
     function closureAndGetGids(input) {
         const plan = exports.hb_subset_plan_create_or_fail(face, input);
         const glyph_map = exports.hb_subset_plan_old_to_new_glyph_mapping(plan);
-        return HbMapKeys(glyph_map); // gids
+
+        const mySetPtr = exports.hb_set_create();
+        // Add the keys of map to keys.
+        // https://harfbuzz.github.io/harfbuzz-hb-map.html#hb-map-keys
+        exports.hb_map_keys(glyph_map, mySetPtr);
+        const gids = typedArrayFromSet(mySetPtr, Uint32Array);
+
+        exports.hb_set_destroy(mySetPtr);
+        exports.hb_map_destroy(glyph_map);
+        exports.hb_subset_plan_destroy(plan);
+
+        return gids;
     }
 
     const fileName = 'MaterialSymbolsOutlined-VF.ttf';
@@ -71,9 +71,13 @@ const { performance } = require('node:perf_hooks');
     }
 
     const unicode_set = exports.hb_subset_input_unicode_set(input);
+    const codePoints = []
     for (const text of SUBSET_TEXT.toString()) {
+        codePoints.push(text.codePointAt(0))        
         exports.hb_set_add(unicode_set, text.codePointAt(0));
     }
+    console.log('codePoints', codePoints)
+
     setSubsetFlags(input, [
         '--no-layout-closure',
         // '--glyph-names'
