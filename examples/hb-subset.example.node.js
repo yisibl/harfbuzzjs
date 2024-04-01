@@ -53,7 +53,7 @@ const { performance } = require('node:perf_hooks');
     exports.hb_blob_destroy(blob);
     // TODO: get gids via hb-shape
     const SUBSET_GIDS = [4261]; // star icon
-    const SUBSET_TEXT = ['star']
+    const SUBSET_TEXT = ['star'] // TODO 去重
 
     // Upper case STAR can also be mapped to the same icon.
     SUBSET_TEXT.forEach(word => {
