@@ -28,5 +28,12 @@ _hb_subset_input_unicode_set
 _hb_subset_input_keep_everything
 _hb_subset_or_fail
 _hb_subset_preprocess
+_hb_subset_plan_create_or_fail
+_hb_subset_plan_destroy
+_hb_subset_plan_old_to_new_glyph_mapping
+_hb_map_keys
+_hb_map_destroy
+_hb_set_get_population
+_hb_set_next_many
 _malloc
 _free
